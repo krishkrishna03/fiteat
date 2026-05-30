@@ -302,77 +302,109 @@ function App() {
 
         <motion.section
           id="members"
-          className="mt-24 overflow-hidden rounded-[2rem] border border-[#DCFCE7] bg-[#F8FEF5] p-8 shadow-glow backdrop-blur-xl"
+          className="mt-24 overflow-hidden rounded-[2.5rem] border border-[#DCFCE7] bg-gradient-to-br from-[#F0FDF4] via-white to-[#ECFDF5] p-10 shadow-2xl shadow-[#22C55E]/15"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-            <div className="space-y-6">
-              <span className="text-sm uppercase tracking-[0.28em] text-[var(--color-secondary)]">Real Members. Real Results.</span>
-              <h2 className="max-w-3xl text-4xl font-semibold text-[var(--color-text)] sm:text-5xl">Members who built lasting health with simple, sustainable coaching.</h2>
-              <p className="max-w-2xl text-[var(--color-muted)]">These video stories show the kind of progress our members achieve when they follow plans built around their habits, tastes, and goals.</p>
+          <div className="mb-12 text-center">
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+              className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#DCFCE7] px-5 py-2"
+            >
+              <span className="inline-block h-2 w-2 rounded-full bg-[#22C55E]" />
+              <span className="text-sm font-semibold uppercase tracking-[0.28em] text-[var(--color-secondary)]">Real Members. Real Results.</span>
+            </motion.div>
+            <h2 className="text-4xl font-semibold text-[var(--color-text)] sm:text-5xl lg:text-6xl">
+              Transformation Stories That Inspire
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-muted)]">
+              Watch how our members achieved lasting results with personalized coaching and sustainable habits.
+            </p>
+          </div>
 
-              <div className="grid gap-4 sm:grid-cols-3">
-                {[
-                  { value: '98%', label: 'Retention' },
-                  { value: '12 wk', label: 'Average plan' },
-                  { value: '4.9/5', label: 'Coach rating' },
-                ].map((metric) => (
-                  <div key={metric.label} className="rounded-[2rem] bg-white p-6 text-center shadow-sm shadow-slate-950/5">
-                    <p className="text-3xl font-semibold text-[var(--color-primary)]">{metric.value}</p>
-                    <p className="mt-3 text-sm uppercase tracking-[0.24em] text-[var(--color-muted)]">{metric.label}</p>
+          <div className="mb-10 flex flex-wrap justify-center gap-6">
+            {[
+              { value: '10,000+', label: 'Success Stories', icon: '⭐' },
+              { value: '98%', label: 'Member Retention', icon: '📈' },
+              { value: '4.9/5', label: 'Average Rating', icon: '🏆' },
+            ].map((metric) => (
+              <motion.div
+                key={metric.label}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-lg shadow-slate-900/5 border border-[#DCFCE7]"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#DCFCE7] text-xl">
+                  {metric.icon}
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-[var(--color-primary)]">{metric.value}</p>
+                  <p className="text-sm text-[var(--color-muted)]">{metric.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {stories.map((story, index) => (
+              <motion.div
+                key={story.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
+                whileHover={{ y: -10, boxShadow: '0 25px 50px -12px rgba(34, 197, 94, 0.25)' }}
+                className="group relative overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-900/5 transition-all duration-300"
+              >
+                <div className="relative overflow-hidden rounded-t-3xl">
+                  {activeVideo === story.video ? (
+                    <video className="h-64 w-full object-cover" controls autoPlay src={story.video} />
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setActiveVideo(story.video)}
+                      className="relative h-64 w-full overflow-hidden"
+                    >
+                      <img src={story.poster} alt={`${story.name} story`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          className="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-2xl shadow-slate-900/20"
+                        >
+                          <span className="ml-1 text-2xl text-[var(--color-primary)]">▶</span>
+                        </motion.div>
+                      </div>
+                    </button>
+                  )}
+                  <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 backdrop-blur-sm">
+                    <span className="text-xs font-bold text-[var(--color-primary)]">{story.loss}</span>
+                    <span className="text-xs text-[var(--color-muted)]">lost</span>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
 
-            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-              {stories.map((story, index) => (
-                <motion.div
-                  key={story.name}
-                  whileHover={{ y: -8 }}
-                  className="group overflow-hidden rounded-[2rem] border border-white bg-white p-6 shadow-sm shadow-slate-900/5 transition duration-300 hover:shadow-xl hover:-translate-y-1"
-                >
-                  <div className="flex items-center justify-between gap-3">
+                <div className="p-6">
+                  <div className="mb-4 flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-secondary)]">{story.name}</p>
-                      <p className="text-base font-semibold text-[var(--color-text)]">{story.duration} · {story.loss} lost</p>
+                      <p className="text-lg font-bold text-[var(--color-text)]">{story.name}</p>
+                      <p className="text-sm text-[var(--color-muted)]">{story.duration} program</p>
                     </div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-[#DCFCE7]/20 text-lg font-semibold text-[var(--color-primary)]">{index + 1}</div>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#DCFCE7] text-sm font-bold text-[var(--color-primary)]">
+                      {index + 1}
+                    </div>
                   </div>
-
-                  <div className="mt-5 overflow-hidden rounded-[1.75rem] bg-[#ECFDF5]">
-                    {activeVideo === story.video ? (
-                      <video className="h-56 w-full object-cover" controls autoPlay src={story.video} />
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => setActiveVideo(story.video)}
-                        className="relative flex h-56 w-full items-center justify-center overflow-hidden rounded-[1.75rem] bg-[#ECFDF5] text-left"
-                      >
-                        <img src={story.poster} alt={`${story.name} story`} className="h-full w-full object-cover" />
-                        <div className="absolute inset-0 bg-slate-950/10 transition-opacity duration-300 hover:bg-slate-950/20" />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="flex items-center gap-3 rounded-full bg-white/95 px-4 py-2 text-[var(--color-primary)] shadow-lg shadow-slate-950/10">
-                            <span className="text-xl">▶</span>
-                            <span className="text-sm font-semibold">Play story</span>
-                          </div>
-                        </div>
-                      </button>
-                    )}
+                  <p className="mb-4 text-sm leading-relaxed text-[var(--color-muted)]">"{story.text}"</p>
+                  <div className="flex gap-2">
+                    <span className="rounded-full bg-[#DCFCE7] px-3 py-1 text-xs font-medium text-[var(--color-primary)]">Verified</span>
+                    <span className="rounded-full bg-[#FEF3C7] px-3 py-1 text-xs font-medium text-[#D97706]">Real Results</span>
                   </div>
-
-                  <p className="mt-5 text-sm leading-6 text-[var(--color-text)]">{story.text}</p>
-
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    <span className="rounded-full bg-[#DCFCE7]/70 px-3 py-2 text-xs font-semibold text-[var(--color-primary)]">Real coach support</span>
-                    <span className="rounded-full bg-[#DCFCE7]/70 px-3 py-2 text-xs font-semibold text-[var(--color-primary)]">Sustainable habits</span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
 
@@ -588,15 +620,13 @@ function App() {
           <div className="lg:col-span-4 border-t border-[#DCFCE7] pt-6 text-center text-sm text-[var(--color-muted)]">© 2026 Transform. All rights reserved.</div>
         </footer>
       </div>
-      <div className="fixed right-4 bottom-4 z-30 w-72 rounded-[2rem] border border-[#DCFCE7] bg-[var(--color-card)] p-4 shadow-2xl shadow-slate-900/10 sm:right-6 sm:bottom-6 sm:w-80">
-        <div className="flex flex-col items-center gap-3 rounded-[1.75rem] bg-[#F8FEF5] p-4 text-center">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-secondary)]">Open app</p>
-            <p className="mt-2 text-lg font-semibold text-[var(--color-text)]">Scan to launch</p>
-          </div>
-          <img className="h-20 w-20 rounded-2xl bg-white p-2 shadow-sm" src={qrCodeUrl} alt="Permanent QR code" />
+      <div className="fixed right-4 bottom-4 z-30 w-48 rounded-2xl border border-[#DCFCE7]/60 bg-white/95 p-3 shadow-xl shadow-slate-900/10 backdrop-blur-md sm:right-6 sm:bottom-6">
+        <div className="flex flex-col items-center gap-2 rounded-xl bg-[#F8FEF5]/80 p-3 text-center">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-secondary)]">Open app</p>
+          <p className="text-sm font-semibold text-[var(--color-text)]">Scan to launch</p>
+          <img className="h-14 w-14 rounded-xl bg-white p-1 shadow-sm" src={qrCodeUrl} alt="QR code" />
         </div>
-        <a href={appDownloadUrl} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#22C55E] to-[#10B981] px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90">
+        <a href={appDownloadUrl} className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#22C55E] to-[#10B981] px-3 py-2 text-xs font-semibold text-white transition hover:opacity-90">
           Open the app
         </a>
       </div>
