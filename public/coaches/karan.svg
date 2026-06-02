@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800">
+  <rect width="100%" height="100%" rx="48" ry="48" fill="#F0FDF4" />
+  <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="Inter, sans-serif" font-size="72" fill="#0F172A">Karan</text>
+  <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-family="Inter, sans-serif" font-size="42" fill="#10B981">Body Coach</text>
+</svg>

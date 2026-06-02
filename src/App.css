@@ -1,0 +1,51 @@
+:root {
+  --color-primary: #22C55E;
+  --color-secondary: #10B981;
+  --color-background: #F8FAFC;
+  --color-card: #FFFFFF;
+  --color-text: #0F172A;
+  --color-muted: #64748B;
+}
+
+.shadow-glow {
+  box-shadow: 0 35px 80px rgba(34, 197, 94, 0.18);
+}
+
+.background-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+}
+
+.coach-track {
+  animation: coach-scroll 32s linear infinite;
+}
+
+@keyframes coach-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+.coach-track {
+  animation: coach-scroll 32s linear infinite;
+}
+
+@keyframes coach-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
