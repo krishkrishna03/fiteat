@@ -139,7 +139,7 @@ const LandingPage = () => {
   const isNativeApp = typeof window !== 'undefined' && ((window as NativeWindow).Capacitor !== undefined || (window as NativeWindow).cordova !== undefined)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0f1419] via-[#1a2428] to-[#0d1e1a] text-slate-100">
+    <div className="min-h-screen bg-gradient-to-b from-[#0f1419] via-[#13232c] to-[#081018] text-slate-100">
       <div className="mx-auto max-w-[1400px] px-6 py-8 sm:px-8 lg:px-10">
         <motion.section
           initial={{ opacity: 0, y: 24 }}
@@ -226,19 +226,20 @@ const LandingPage = () => {
             <p className="max-w-2xl text-slate-400">Certified nutrition experts and sports nutritionists dedicated to your transformation</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {coaches.map((coach) => (
-              <motion.article
-                key={coach.name}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8 }}
-                className="rounded-2xl border border-[#84cc16]/30 bg-[#0f1419] p-6 shadow-lg hover:border-[#84cc16]/60 transition-all"
-              >
-                <div className="mb-4 overflow-hidden rounded-2xl bg-[#1a2428]">
-                  <img loading="lazy" className="h-40 w-full object-cover" src={coach.imagePath} alt={coach.name} />
-                </div>
+          <div className="relative overflow-hidden pb-4">
+            <div className="coach-track flex gap-6">
+              {coaches.concat(coaches).map((coach, index) => (
+                <motion.article
+                  key={`${coach.name}-${index}`}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  whileHover={{ y: -8 }}
+                  className="flex-shrink-0 min-w-[280px] max-w-[320px] rounded-2xl border border-[#84cc16]/30 bg-[#0f1419] p-6 shadow-lg hover:border-[#84cc16]/60 transition-all"
+                >
+                  <div className="mb-4 overflow-hidden rounded-2xl bg-[#1a2428]">
+                    <img loading="lazy" className="h-40 w-full object-cover" src={coach.imagePath} alt={coach.name} />
+                  </div>
                   <div className="space-y-3">
                     <div>
                       <p className="text-lg font-bold text-white">{coach.name}</p>
@@ -252,6 +253,7 @@ const LandingPage = () => {
                 </motion.article>
               ))}
             </div>
+          </div>
         </motion.section>
 
         {/* Members Stories Section */}
