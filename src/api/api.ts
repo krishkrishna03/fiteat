@@ -22,14 +22,11 @@ const normalizeNativeUrl = (baseUrl: string) => {
 }
 
 const getBaseURL = () => {
-  const envUrl = import.meta.env.VITE_API_BASE_URL
+  const backendUrl = 'https://fiteat-kqma.vercel.app/api'
   if (isNativeApp()) {
-    if (envUrl) {
-      return normalizeNativeUrl(envUrl)
-    }
-    return 'http://10.0.2.2:5004/api'
+    return normalizeNativeUrl(backendUrl)
   }
-  return envUrl || '/api'
+  return backendUrl
 }
 
 const API = axios.create({
