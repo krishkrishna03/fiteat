@@ -3,12 +3,12 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        glow: '0 30px 80px rgba(124, 58, 237, 0.18)',
+        glow: '0 30px 80px rgba(132, 204, 22, 0.15)',
       },
       colors: {
-        ink: '#0f172a',
-        sky: '#0ea5e9',
-        violet: '#7c3aed',
+        'lime': '#84cc16',
+        'dark-green': '#0f4c3a',
+        'forest': '#1a2428',
       },
     },
   },

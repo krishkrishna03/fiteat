@@ -1,0 +1,12 @@
+{
+  "appId": "com.fittransform.fiteat",
+  "appName": "FitEat",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "hostname": "localhost",
+    "androidScheme": "http",
+    "cleartext": true,
+    "url": "https://fiteat.vercel.app"
+  }
+}

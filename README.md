@@ -71,3 +71,21 @@ export default defineConfig([
   },
 ])
 ```
+
+## Android App Support
+
+This project now includes Capacitor support to package the web app as a native Android application with the same UI.
+
+### Available commands
+
+- `npm run build:web` – build the web app into `dist`
+- `npm run sync` – synchronize Capacitor configuration and web assets
+- `npm run android` – build the web app and sync it with the Android platform
+- `npm run open:android` – open the Android project in Android Studio
+
+### Notes
+
+- The Capacitor configuration is at `capacitor.config.json`
+- The Android native project is generated under `android/`
+- You need Android Studio and Android SDK installed to open, build, and run the Android app
+- The app uses the same web UI from `dist`, so the mobile app appearance matches the website
